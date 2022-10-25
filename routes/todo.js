@@ -24,7 +24,7 @@ function requireAuth(req, res, next)
 router.get('/list', todoController.todoList);
 
 // Route for Details
-router.get('/details/:id', requireAuth, todoController.details);
+router.get('/details/:id', todoController.details);
 
 // Routers for edit
 router.get('/edit/:id', requireAuth, todoController.displayEditPage);
