@@ -1,3 +1,7 @@
+// <!--  File name: midterm
+// Student ID: 301236167
+// Name: Chung Hin Ng
+// Data: Oct 25, 2022 -->
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const User = require('../models/user');

@@ -1,3 +1,7 @@
+// <!--  File name: midterm
+// Student ID: 301236167
+// Name: Chung Hin Ng
+// Data: Oct 25, 2022 -->
 let mongoose = require('mongoose');
 let crypto = require('crypto');
 let Schema = mongoose.Schema;

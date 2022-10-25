@@ -1,3 +1,7 @@
+// <!--  File name: midterm
+// Student ID: 301236167
+// Name: Chung Hin Ng
+// Data: Oct 25, 2022 -->
 // Do not expose your credentials in your code.
 let atlasDB = "mongodb+srv://dbuser:DCLDerLzVnVPfEtD@cluster005.acpzluh.mongodb.net/midterm?retryWrites=true&w=majority";
 

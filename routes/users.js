@@ -1,3 +1,7 @@
+// <!--  File name: midterm
+// Student ID: 301236167
+// Name: Chung Hin Ng
+// Data: Oct 25, 2022 -->
 let express = require('express');
 let router = express.Router();
 let usersController = require('../controllers/user');
