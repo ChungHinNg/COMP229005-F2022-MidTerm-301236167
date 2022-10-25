@@ -8,27 +8,35 @@ function requireAuth(req, res, next)
 {
     // check if the user is logged in
     
-    // ADD YOUR CODE HERE        
-
+    // ADD YOUR CODE HERE       eded  
+    if(!req.isAuthenticated())
+    {
+        req.session.url = req.originalUrl;
+        return res.redirect('/users/signin');
+    }
+    next();
 }
+
+
+
 
 /* GET list of items */
 router.get('/list', todoController.todoList);
 
 // Route for Details
-router.get('/details/:id', todoController.details);
+router.get('/details/:id', requireAuth, todoController.details);
 
 // Routers for edit
-router.get('/edit/:id', todoController.displayEditPage);
-router.post('/edit/:id', todoController.processEditPage);
+router.get('/edit/:id', requireAuth, todoController.displayEditPage);
+router.post('/edit/:id', requireAuth, todoController.processEditPage);
 
 // Delete
-router.get('/delete/:id', todoController.performDelete);
+router.get('/delete/:id', requireAuth, todoController.performDelete);
 
 /* GET Route for displaying the Add page - CREATE Operation */
-router.get('/add', todoController.displayAddPage);
+router.get('/add', requireAuth, todoController.displayAddPage);
 
 /* POST Route for processing the Add page - CREATE Operation */
-router.post('/add', todoController.processAddPage);
+router.post('/add', requireAuth, todoController.processAddPage);
 
 module.exports = router;

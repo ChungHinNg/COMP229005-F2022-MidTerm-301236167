@@ -47,7 +47,25 @@ module.exports.details = (req, res, next) => {
 // Gets a todo by id and renders the Edit form using the add_edit.ejs template
 module.exports.displayEditPage = (req, res, next) => {
     
-    // ADD YOUR CODE HERE
+    // ADD YOUR CODE HERE eddddd
+
+    let id = req.params.id;
+
+    TodoModel.findById(id, (err, itemToEdit) => {
+        if(err)
+        {
+            console.log(err);
+            res.end(err);
+        }
+        else
+        {
+            //show the edit view
+            res.render('todo/add_edit', {
+                title: 'Edit Item', 
+                todo: itemToEdit
+            })
+        }
+    });    
 
 }
 
@@ -65,21 +83,54 @@ module.exports.processEditPage = (req, res, next) => {
         complete: req.body.complete ? true : false
     });
 
-    // ADD YOUR CODE HERE
-
+    // ADD YOUR CODE HERE edddd
+    TodoModel.updateOne({_id: id}, updatedTodo, (err) => {
+        if(err)
+        {
+            console.log(err);
+            res.end(err);
+        }
+        else
+        {
+            // console.log(req.body);
+            // refresh the list
+            res.redirect('/todo/list');
+        }
+    });
 }
 
 // Deletes a todo based on its id.
 module.exports.performDelete = (req, res, next) => {
 
-    // ADD YOUR CODE HERE
+    // ADD YOUR CODE HERE edd
+    let id = req.params.id;
+
+    TodoModel.remove({_id: id}, (err) => {
+        if(err)
+        {
+            console.log(err);
+            res.end(err);
+        }
+        else
+        {
+            // refresh the book list
+            res.redirect('/todo/list');
+        }
+    });
 
 }
 
 // Renders the Add form using the add_edit.ejs template
 module.exports.displayAddPage = (req, res, next) => {
 
-    // ADD YOUR CODE HERE          
+  
+    // ADD YOUR CODE HERE       ed
+   let newItem = TodoModel();
+
+   res.render('todo/add_edit', {
+    title: 'Add a new Item',
+    todo: newItem
+})         
 
 }
 
@@ -94,7 +145,20 @@ module.exports.processAddPage = (req, res, next) => {
         description: req.body.description,
         complete: req.body.complete ? true : false
     });
+    // ADD YOUR CODE HERE ed
+    TodoModel.create(newTodo, (err, item) =>{
+        if(err)
+        {
+            console.log(err);
+            res.end(err);
+        }
+        else
+        {
+            // refresh the book list
+            console.log(item);
+            res.redirect('/todo/list');
+        }
+    });
 
-    // ADD YOUR CODE HERE
-    
+
 }
